@@ -1,0 +1,44 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador  }}</p>
+    <button v-on:click="sum(5, $event)">Somar 5</button>
+    <p v-on:mousemove="updateXY">Mouse {{ x }} e {{ y }}
+        <span v-on:mousemove.stop="">PARAR AQUI!!!</span>
+        <!-- v:on:mousemove.stop.prevent also works -->
+    </p>
+    <a v-on:click.prevent="" href="http://google.com">Google prevent</a>
+    <hr>
+    <input type="text" v-on:keyup.enter.alt="showAlert">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador : 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+             sum(x, event) {
+                console.log(event)
+                this.contador += x
+             },
+             updateXY(event) {
+                this.x = event.clientX
+                this.y = event.clientY
+             },
+             showAlert() {
+                alert('Estou te alertando!')
+             },
+            //  stop(event) {
+            //     event.stopPropagation()
+            //  }
+            prevent(event) {
+                console.log("inside prevent")
+                event.preventDefault()
+            }
+        }
+    })
+</script>

@@ -1,0 +1,54 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="contador2++">Aumentar2</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador: {{ contador }} | {{ contador2 }}</p>
+    <!-- <p>Resultado: {{ resultado() }}</p> -->
+    <!-- propriedade computada só é chamado quando a propriedade dentro do metodo é alterada -->
+    <!-- uma propriedade computada é chamado igual a uma propridade - sem os parenteses de uma chamada de metodo comum -->
+    <p>Resultado: {{ resultado }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0,
+        },
+        computed: { // propriedades computadas sao sincronas!!!
+            resultado() {
+                return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+            }
+        },
+        watch: { //assincrona -> exemplo, usar pra listar cidades de um estado assim que um estado for selecionado
+            contador(novoValor, antigoValor) {
+                console.log(novoValor, antigoValor) //o watch fica de olho no data.contador e recebe o valor novo e o antigo
+                setTimeout(() => { //usando funcao arrow aqui pra manter a referencia do this lexica (pro data desse escopo do vue)
+                    this.contador = 0
+                }, 2000)
+
+                // Aqui seria a alternativa evitando arrow function e dando nome a funcao, conforme o livro recomenda:
+                // const instanciaVue = this -> guarda o escopo do vue
+                // setTimeout(function zerarContador() { -> function com nome declarado "zerarContador"
+                //     instanciaVue.contador = 0
+                // }, 2000)
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++
+            },
+            diminuir() {
+                this.contador--
+            },
+            // resultado() {
+            // um método normal é chamado sempre ao renderizar o conteúdo da página, mesmo que a propridade de dentro do método não mude
+            // por conta disso, usamos o computed
+            //     return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5'
+            // }
+        }
+    })
+</script>

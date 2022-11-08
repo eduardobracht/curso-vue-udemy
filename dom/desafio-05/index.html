@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="styles.css">
+<script src="https://unpkg.com/vue@2"></script>
+
+<div id="desafio">
+	<!-- 1) Iniciar a execução do efeito usando botão. 
+    O efeito deve alternadamente trocar as classes "destaque" e
+    "encolher" para cada chamada de setInteval. Use a div abaixo
+	com id "efeito" para associar as classes CSS. -->
+	<h2>#01</h2>
+	<div>
+		<button @click="iniciarEfeito">Iniciar Efeito</button>
+		<div id="efeito" :class="efeito1"></div>
+	</div>
+	
+	<!-- 2) Crie duas classes CSS e associe a div usando a
+		sintaxe de array -->
+	<h2>#02</h2>
+	<div :class="[classeCSS1, classeCSS2]">Estou sem classe CSS :(</div>
+
+	<!-- 3) Aplique na div abaixo a classe informada pelo usuário
+		(crie classe CSS de exemplo). -->
+	<h2>#03</h2>
+	<div>
+		<input type="text" v-model="classeCSS3">
+		<div :class="classeCSS3"></div>
+	</div>
+
+	<!-- 4) Aplique na div abaixo a classe informada pelo usuário e
+    outra classe usando o valor true/false (crie classes CSS de exemplo). -->
+	<h2>#04</h2>
+	<div>
+		<input type="text" v-model="classeCSS4">
+		<input type="text" v-on:keyup="aplicar5">
+		<div :class="[classeCSS4, {classe5: classeCSS5}]"></div>
+	</div>
+
+	<!-- 5) Repita 3) mas utilizando estilos ao invés de classes CSS.
+    Associe os estilos a div abaixo  -->
+	<h2>#05</h2>
+	<div>
+		<input type="text" v-model="myStyles">
+		<div class="classe4" :style="myStyles"></div>
+	</div>
+
+	<!-- 6) Crie uma barra de progresso simples com setInterval 
+    e binding de estilo. -->
+	<h2>#06</h2>
+	<div>
+		<button @click="iniciarProgresso">Iniciar</button>
+		<div id="barParent">
+			<div style="background-color: green; height: 100%;" :style="progressBar">
+				{{ progressBar }}
+			</div>		
+		</div>
+	</div>
+</div>
+<script src="app.js"></script>

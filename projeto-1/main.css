@@ -1,0 +1,309 @@
+.card:not(#player-info) {
+    margin-top: 30px;
+}
+.div-shadowing {
+    box-shadow: 0px 5px 15px 4px #888888;
+}
+
+/* Fresh game / end game overlay box */
+#splash-screen {
+    width: 700px;
+    height: 350px;
+    z-index: 2;
+    position: fixed;
+    background-color: linen;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#overlay {
+    width: 110%;
+    height: 110%;
+    position: absolute;
+    background-color: rgba(255,255,255, 0.3);
+    backdrop-filter: blur(10px);
+    margin: -1%;
+    z-index: 2;
+}
+/* Start screen */
+#start-screen {
+    text-align: center;
+    padding: 15px;
+}
+#start-screen .pText {
+    text-align: justify;
+    line-height: 1.5;
+}
+#start-screen button {
+    margin-top: 14px;
+    height: 40px;
+    width: 130;
+}
+/* End game screen */
+#results {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 15px;
+}
+#results button {
+    margin-top: 15px;
+    height: 40px;
+    width: 130;
+}
+
+/* Main card divs */
+#projeto1 {
+    position: relative;
+}
+#projeto1 * {
+    font-family: 'Optima';
+}
+
+/* player card */
+#player-info {
+    display: flex;
+    justify-content: space-evenly;
+    height: 250px;
+    padding-top: 70px;
+}
+.character {
+    width: max-content;
+}
+.character h1 {
+    text-align: center;
+}
+.character span {
+    line-height: 30px;
+}
+.parent-lifebar {
+    border-style: solid;
+    height: 30px;
+    width: 500px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Buttons */
+#action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 140px;
+}
+#action-buttons button {
+    height: 40px;
+    width: 130;
+    background-color: unset;
+}
+
+.loadingGif {
+    height: inherit;
+}
+
+/* log card */
+#log {
+    /* height: 140px; */
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.log-entry * {
+    /* padding: 8px; */
+    margin: 8px;
+    text-align: center;
+    height: 25px;
+    line-height: 25px;
+    text-transform: uppercase;
+    border-radius: 3px
+}
+.log-player {
+    background-color: lightsteelblue;
+}
+.log-monster {
+    background-color: lightcoral;
+}
+.log-old {
+    background-color: lightgray;
+}
+.log-round {
+    padding: 5px;
+}
+/* End main divs */
+
+/* Character animation */
+
+/* Player idle */
+div#character-player.player-idle {
+    width: 60px;
+    height: 96px;
+    background-image : url('Striker/spr_StrikerIdle_strip.png');
+    animation: playerIdle 1s steps(8) infinite;
+    transform: scale(2.0);
+    position: relative;
+    left: 37%;
+    margin-bottom: -30px;
+    margin-top: -20px;
+    padding-bottom: 4px;
+}
+@keyframes playerIdle {
+    from{background-position-x:0px;}
+    to{background-position-x:-768px;}
+}
+
+/* Player Attacking */
+div#character-player.player-attack {
+    width: 85px;
+    height: 96px;
+    background-image : url('Striker/spr_StrikerSlash_stripNoEffect.png');
+    animation: playerAttack 1.6s steps(16);
+    transform: scale(2.0);
+    position: relative;
+    left: 40%;
+    margin-bottom: -30px;
+    margin-top: -20px;
+    padding-bottom: 4px;
+}
+@keyframes playerAttack {
+    from{background-position-x:0px;}
+    to{background-position-x:-2048px;}
+}
+
+/* Player Special Attacking */
+div#character-player.player-specialAttack {
+    width: 95px;
+    height: 96px;
+    background-image : url('Striker/spr_StrikerSlash_stripWithEffect.png');
+    animation: playerSpecialAttack 1.6s steps(16);
+    transform: scale(2.0);
+    position: relative;
+    left: 40%;
+    margin-bottom: -30px;
+    margin-top: -20px;
+    padding-bottom: 4px;
+}
+@keyframes playerSpecialAttack {
+    from{background-position-x:0px;}
+    to{background-position-x:-2048px;}
+}
+
+/* Player get hit */
+div#character-player.player-hit {
+    width: 95px;
+    height: 96px;
+    background-image : url('Striker/spr_StrikerGetHit_strip.png');
+    animation: playerGetHit 0.63s steps(4) infinite;
+    transform: scale(2.0);
+    position: relative;
+    left: 40%;
+    margin-bottom: -30px;
+    margin-top: -20px;
+    padding-bottom: 4px;
+}
+@keyframes playerGetHit {
+    from{background-position-x:0px;}
+    to{background-position-x:-384px;}
+}
+
+/* Player heals */
+div#character-player.player-heal {
+    width: 95px;
+    height: 96px;
+    background-image : url('Striker/spr_StrikerDash_strip.png');
+    animation: playerHeals 1s steps(12) infinite;
+    transform: scale(2.0);
+    position: relative;
+    left: 40%;
+    margin-bottom: -30px;
+    margin-top: -20px;
+    padding-bottom: 4px;
+}
+@keyframes playerHeals {
+    from{background-position-x:0px;}
+    to{background-position-x:-1152px;}
+}
+
+/* Player death */
+div#character-player.player-death {
+    width: 95px;
+    height: 96px;
+    background-image : url('Striker/spr_StrikerDeath_strip.png');
+    animation: playerDeath 1.6s steps(15) forwards;
+    transform: scale(2.0);
+    position: relative;
+    left: 40%;
+    margin-bottom: -30px;
+    margin-top: -20px;
+    padding-bottom: 4px;
+}
+@keyframes playerDeath {
+    from{background-position-x:0px;}
+    to{background-position-x:-1440px;}
+}
+
+
+/* Monster */
+div.mirrorImage {
+    transform: scaleX(-1);
+}
+/* Monster idle */
+div#character-monster.monster-idle {
+    width: 60px;
+    height: 50px;
+    background-image : url('Ronin/spr_RoninIdle_strip.png');
+    animation: monsterIdle 1s steps(8) infinite;
+    transform: scale(2.0);
+    position: relative;
+    left: 44%;
+}
+@keyframes monsterIdle {
+    from{background-position-x:0px;}
+    to{background-position-x:-512px;}
+}
+
+/* Monster attack */
+div#character-monster.monster-attack {
+    width: 128px;
+    height: 71px;
+    background-image : url('Ronin/spr_RoninAttackAlt_strip.png');
+    animation: monsterAttack 2s steps(25);
+    transform: scale(2.0);
+    position: relative;
+    left: 44%;
+    margin-top: -21px;
+}
+@keyframes monsterAttack {
+    from{background-position-x:0px;}
+    to{background-position-x:-3200px;}
+}
+
+/* Monster get hit */
+div#character-monster.monster-hit {
+    width: 64px;
+    height: 50px;
+    background-image : url('Ronin/spr_RoninGetHit_strip.png');
+    animation: monsterGetHit 1s steps(7) infinite;
+    transform: scale(2.0);
+    position: relative;
+    left: 44%;
+}
+@keyframes monsterGetHit {
+    from{background-position-x:0px;}
+    to{background-position-x:-448px;}
+}
+
+/* Monster death */
+div#character-monster.monster-death {
+    width: 64px;
+    height: 50px;
+    background-image : url('Ronin/spr_RoninDeath_strip.png');
+    animation: monsterDeath 1s steps(15) forwards;
+    transform: scale(2.0);
+    position: relative;
+    left: 44%;
+}
+@keyframes monsterDeath {
+    from{background-position-x:0px;}
+    to{background-position-x:-960px;}
+}

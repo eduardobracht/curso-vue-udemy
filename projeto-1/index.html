@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue@2"></script>
+        <link rel="stylesheet" href="main.css">
+        <title>Projeto 1</title>
+    </head>
+
+    <body>
+        <div id="projeto1">
+            <div id="overlay" v-if="splashScreen"></div>
+            <div id="splash-screen" class="div-shadowing" v-show="splashScreen">
+                <div id="start-screen" v-if="!endGame">
+                    <p>
+                        <h1>Welcome, player!</h1>
+                        <p class="pText">
+                            This app is a result of the first project proposed during the <a style="font-style: italic;" href="https://www.udemy.com/course/vue-js-completo">Curso Vue JS 2 - O Guia Completo</a> course,
+                            developed by Eduardo Mallmann. It's a simple Vue.JS 2 app that covers conditional styling/rendering, reactive properties, events, arrays, etc.
+                        </p>
+                        <br>
+                        <p>
+                            I hope you enjoy! The CSS animation is a nice plus I added. :)
+                        </p>
+                    </p>
+                    <p>
+                        <button @click="startGame" style="background-color: lightgreen;">Let's go!</button>
+                    </p>
+                </div>
+                <div id="results" v-else>
+                    <h1>{{ gameResults }}</h1>
+                    <p>
+                        Thanks for playing it!
+                    </p>
+                    <p>
+                        <button @click="startGame" style="background-color: lightskyblue;">Start a new game</button>
+                    </p>
+                </div>
+            </div>
+            
+            <div id="player-info" class="div-shadowing card">
+                <div class="player character">
+                    <div id="character-player" :class="playerAnim"></div>
+                    <h1>Player</h1>
+                    <div class="parent-lifebar">
+                        <div class="lifebar" :style="[{width: lifePlayer + '%'}, {backgroundColor: getLifebarBg('player')}]">
+                            <span>{{ `${lifePlayer}%` }}</span>
+                        </div>  
+                    </div>
+                </div>
+                <div class="monster character">
+                    <div class="mirrorImage">
+                        <div id="character-monster" :class="monsterAnim"></div>
+                    </div>
+                    <h1>Enemy</h1>
+                    <div class="parent-lifebar">
+                        <div class="lifebar" :style="[{width: lifeMonster + '%'}, {backgroundColor: getLifebarBg('monster')}]">
+                            <span>{{ `${lifeMonster}%` }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="action-buttons" class="div-shadowing card">
+                <!-- Performing action -->
+                <template v-if="performingAction">
+                    <img class="loadingGif" src="loadingGif.gif">
+                </template>
+                <!-- action buttons -->
+                <template v-else>
+                    <button @click="attack(false)">Attack</button>
+                    <button @click="attack(true)">Special attack</button>
+                    <button @click="heal">Heal</button>
+                    <button @click="finishGame(true)">Give up</button>
+                </template>
+            </div>
+
+            <div id="log" class="div-shadowing card" v-show="hitLog.length > 0">
+                <!-- action log -->
+                <div v-for="(hits, index) in hitLog" class="log-entry">
+                    <template v-for="(value, key) in hits">
+                        <div v-if="key == 'Player'" :class="(index <= 1) ? 'log-player' : 'log-old'">
+                            <span>{{ value }}</span>
+                        </div>
+                        <div v-else :class="(index <= 1) ? 'log-monster' : 'log-old'">
+                            {{ value }}
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+        </div>
+    </body>
+    
+    <footer>
+        <script src="app.js"></script>
+    </footer>
+</html>
