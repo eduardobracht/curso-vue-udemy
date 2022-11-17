@@ -1,0 +1,43 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue@2"></script>
+
+<div id="app1">
+    {{ titulo1 }} <!-- {{ titulo2 }} is not accessible here -->
+    <button @click="alterar">Alterar</button>
+</div>
+
+<div id="app2">
+    {{ titulo2 }} <!-- {{ titulo1 }} is not accessible here -->
+    <button @click="alterar">Alterar</button>
+</div>
+
+<script>
+    const vm1 = new Vue({
+        el: '#app1',
+        data: {
+            titulo1: 'Test 1'
+        },
+        methods: {
+            alterar() {
+                vm2.titulo2 += '????'
+            }
+        }
+    })
+
+    const vm2 = new Vue({
+        el: '#app2',
+        data: {
+            titulo2: 'Test 2'
+        },
+        methods: {
+            alterar() {
+                vm1.titulo1 += '!!!!'
+            }
+        }
+    })
+
+    // showing that it's possible to access/update data from a view instance using pure javascript from outside of the instance
+    setTimeout(() => {
+        vm1.titulo1 = 'Alterado pelo timer!'
+    }, 2000)
+</script>
