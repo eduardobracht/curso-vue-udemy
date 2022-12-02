@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue@2"></script>
+
+<div id="app">
+    <comp></comp>
+    <comp></comp>
+    <comp></comp>
+</div>
+
+<script>
+    // const dados = {
+    //     aula: 'Aula: Montando Instância Vue',
+    //     modulo: 'Módulo: Instância Vue'
+    // } if we return a constant inside data in the component, all instances of the component will share the same data state.
+
+    Vue.component('comp', {
+        template: `
+            <div>
+                <h1>{{ aula }}</h1>
+                <h2>{{ modulo }}</h2>
+                <button @click="alterarAula">Alterar Aula</button>
+                <button @click="alterarModulo">Alterar Módulo</button>
+            </div>
+        `,
+        data: function() {
+            // return dados - this would make it share the same state from `const dados`
+            return { //this will keep a new state of each component rendered
+                aula: 'Aula: Montando Instância Vue',
+                modulo: 'Módulo: Instância Vue'
+            }
+        },
+        methods: {
+            alterarAula() {
+                this.aula += '#'
+            },
+            alterarModulo() {
+                this.modulo += '#'
+            }
+        }
+    })
+
+    const vm = new Vue({
+        el: '#app',
+        //el: 'comp', //this works but not as a component - it works just like a regular selector
+    })
+</script>
